@@ -1,17 +1,56 @@
 # culture-trend-curator
 
-CodeBuddy Skill：公共趋势驱动的书籍、电影、剧集推荐策展器。
+An Agent Skill for public-trend-based book, movie, and TV recommendations.
 
-## 能做什么
+This skill was created and tested for CodeBuddy, but the structure is intentionally simple: `SKILL.md` + `references/` + optional `scripts/`. Any agent/runtime that can load a `SKILL.md`-style skill can adapt it.
 
-- 生成每周书影趋势推荐。
-- 基于公共榜单、近期热门、高分口碑、媒体推荐和长期经典价值做筛选。
-- 书籍以中文可读为主，优先中文原创、已有中译本、中文出版/阅读社区讨论较多的书。
-- 影视以中文可看/可讨论为主。
-- 每期影视保留 1 个全球影史经典补课位，不要求是中文作品，但要有公认经典价值和中文观看/讨论便利性。
-- 默认记录推荐历史，但不默认去重；只有明确要求避免重复时才使用历史去重。
+## What it does
 
-## 示例
+- Curates weekly book/movie/TV recommendations from public signals.
+- Uses public charts, ratings, media lists, awards, and discussion signals.
+- Prioritizes Chinese-readable books: Chinese originals, Chinese translations, Chinese editions, or books discussed in Chinese reading communities.
+- Prioritizes movies/TV that are watchable or discussable in Chinese-language contexts.
+- Keeps one global film-history classic catch-up slot by default.
+- Records recommendation history if requested, but does not deduplicate by default unless explicitly asked.
+
+## Quick Start
+
+Install into CodeBuddy user-level skills:
+
+```bash
+mkdir -p ~/.codebuddy/skills
+git clone https://github.com/cody1991/culture-trend-curator.git ~/.codebuddy/skills/culture-trend-curator
+```
+
+Update later:
+
+```bash
+cd ~/.codebuddy/skills/culture-trend-curator && git pull
+```
+
+Manual install for other agents:
+
+```bash
+git clone https://github.com/cody1991/culture-trend-curator.git
+```
+
+Then point your agent to the cloned folder or copy it into that agent's skill directory.
+
+## Example Prompts
+
+```text
+用 culture-trend-curator 生成本周书影趋势推荐。
+```
+
+```text
+用 culture-trend-curator 推荐近 30 天值得看的电影和剧集。
+```
+
+```text
+用 culture-trend-curator 推荐几部经典补课剧，比如类似绝命毒师、风骚律师这种级别的。
+```
+
+## Suggested Weekly Automation Prompt
 
 ```text
 用 culture-trend-curator 生成本周书影趋势推荐。
@@ -26,15 +65,9 @@ CodeBuddy Skill：公共趋势驱动的书籍、电影、剧集推荐策展器�
 - 输出适合发送到群里的 Markdown
 ```
 
-## 安装
+Recommended schedule: weekly, Sunday 20:00.
 
-复制到 CodeBuddy 用户级 Skills 目录：
-
-```bash
-cp -R . ~/.codebuddy/skills/culture-trend-curator
-```
-
-## 目录结构
+## Directory Structure
 
 ```text
 .
@@ -47,3 +80,27 @@ cp -R . ~/.codebuddy/skills/culture-trend-curator
     ├── rank_items.py
     └── render_digest.py
 ```
+
+## Optional Scripts
+
+Rank candidate items:
+
+```bash
+python3 scripts/rank_items.py candidates.json --out ranked.json --history recommendation_history.json --mode weekly
+```
+
+Render a Markdown digest and append emitted items to history:
+
+```bash
+python3 scripts/render_digest.py ranked.json --out digest.md --books 5 --films 5 --history-out recommendation_history.json --mode weekly
+```
+
+## Requirements
+
+- No runtime dependency is required for the skill instructions.
+- Optional scripts use Python standard library only.
+- Internet/platform search capability is expected when generating live recommendations.
+
+## License
+
+MIT License. See [`LICENSE`](LICENSE).
