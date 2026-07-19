@@ -26,6 +26,7 @@ Assume the default digest is weekly unless the user specifies otherwise:
 - Time window: last 30 days plus current-year lists.
 - Output: 5 books and 5 movies/TV items.
 - Books: prioritize Chinese-readable books, especially Chinese editions, translated editions, Chinese publishing/discussion signals, or books easily readable by a Chinese-language audience. Avoid turning the book section into direct English-list translation.
+- Books must not become a new-book list: treat new-book pages as discovery sources only. In a normal weekly digest, mix recent hot books with stable backlist, modern classics, long-term high-score works, and media/community picks.
 - Movies/TV: prioritize works that are watchable or actively discussable in Chinese-language contexts. Keep one global film-history classic catch-up slot by default; it does not need to be a Chinese-language work, but it must have widely recognized classic value and convenient Chinese viewing/discussion signals.
 - Style: concise editorial curation.
 - Personal data: default to public sources; only use personal records when explicitly requested.
@@ -48,7 +49,8 @@ Assume the default digest is weekly unless the user specifies otherwise:
    - Read `references/scoring_rules.md`.
    - Filter obvious low-quality items: very low rating, very small sample, pure marketing lists with no evidence.
    - Balance recent heat with long-term quality.
-   - Enforce diversity: avoid recommending only one genre, country, or content type.
+   - Enforce diversity: avoid recommending only one genre, country, content type, or source family.
+   - For books, cap new-book candidates and explicitly include stable/backlist/classic choices so the result is not just a Douban latest-books digest.
 
 4. Render the digest.
    - Read `references/output_format.md`.

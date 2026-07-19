@@ -88,6 +88,7 @@ Exclude or downgrade:
 
 - Items with rating below 7/10 unless there is a special reason.
 - Items with very low rating count and no credible source endorsement.
+- Book candidates from latest/new-book pages when they have weak sample size and no external signal.
 - Pure sponsored/promotional lists without independent corroboration.
 - Works that are unavailable or not yet released unless explicitly presented as upcoming.
 
@@ -107,10 +108,13 @@ For a weekly digest:
 
 Books:
 
-- 2 recent hot books.
-- 1 high-quality new/recent book.
-- 1 long-term classic or modern classic.
-- 1 discovery item.
+- 1 recent hot/new Chinese-readable book.
+- 1 stable high-score or long-tail book with enough ratings/discussion.
+- 1 classic or modern classic.
+- 1 nonfiction/humanities/social-science/community pick from media or reading communities.
+- 1 discovery item, explicitly marked if the sample is small.
+
+For 10-book digests: cap latest/new-book-page candidates at 3; include at least 3 backlist/classic/long-term high-score books; include at least 2 non-Douban-latest media/community/publisher/bookstore picks.
 
 Movies/TV:
 

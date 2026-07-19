@@ -12,10 +12,12 @@ Use this structure by default:
 ## 书籍
 
 ### 1. 《标题》 — 作者
+- 槽位：近期热门 / 稳定口碑 / 经典补课 / 社科人文 / 小众发现 / 新书观察位
 - 类型：文学 / 历史 / 科幻 / 非虚构
 - 推荐理由：一句话说明为什么值得读。
 - 为什么现在读：近期上榜、获奖、讨论变多、新译本、影视化等。
 - 质量信号：评分、评分人数、榜单来源、媒体推荐。
+- 稳定性：长期口碑 / 新书观察位 / 样本偏小 / 多来源交叉验证。
 - 风险提示：节奏慢、门槛高、题材压抑、篇幅长等。
 - 链接：URL
 
@@ -49,6 +51,8 @@ Each recommended item should include at least two signals where possible:
 
 - A recent trend/list signal.
 - A quality signal such as rating, critic consensus, award, or repeated source endorsement.
+
+For books, also include a slot label. If a book mainly comes from a latest/new-book page and has fewer than 200 ratings, mark it as `新书观察位` or `样本偏小`; do not present it as stable high-score consensus.
 
 If only one signal exists, explicitly mark it as exploratory.
 

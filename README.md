@@ -14,6 +14,7 @@ This skill was created and tested for CodeBuddy, but the structure is intentiona
 - Curates weekly book/movie/TV recommendations from public signals.
 - Uses public charts, ratings, media lists, awards, and discussion signals.
 - Prioritizes Chinese-readable books: Chinese originals, Chinese translations, Chinese editions, or books discussed in Chinese reading communities.
+- Avoids turning the book section into a latest/new-book feed; mixes recent books with stable backlist, classics, long-term high-score works, and media/community picks.
 - Prioritizes movies/TV that are watchable or discussable in Chinese-language contexts.
 - Keeps one global film-history classic catch-up slot by default.
 - Records recommendation history if requested, but does not deduplicate by default unless explicitly asked.
@@ -64,9 +65,11 @@ Then point your agent to the cloned folder or copy it into that agent's skill di
 - 基于公共榜单、近期热门、高分口碑、媒体推荐和长期经典价值
 - 推荐 5 本书 + 5 部影视
 - 书籍以中文可读为主，优先中文原创、已有中译本、中文出版/阅读社区讨论较多的书
+- 书籍不要做成新书榜搬运；新书/最新页候选最多占一部分，需要混入稳定口碑、经典/现代经典、长期高分和媒体/社区书单
 - 影视以中文可看/可讨论为主
 - 影视里保留 1 个全球影史经典补课位，不要求是中文作品，但要有公认经典价值和中文观看/讨论便利性
-- 每个条目包含：推荐理由、为什么现在值得读/看、质量信号、中文可读/可看信号、风险提示、来源链接
+- 每个条目包含：槽位、推荐理由、为什么现在值得读/看、质量信号、中文可读/可看信号、稳定性/样本提示、风险提示、来源链接
+- 如果书籍评分人数少于 200，请明确标注“新书观察位/样本偏小”
 - 输出适合发送到群里的 Markdown
 ```
 

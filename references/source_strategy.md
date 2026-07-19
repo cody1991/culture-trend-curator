@@ -26,11 +26,31 @@ Prioritize recommendations that are useful in a Chinese-language context:
 
 Prefer these source types:
 
-- Douban Reading: annual list, high-score list, new books, hot discussions.
+- Douban Reading: annual list, high-score list, monthly hot list, Top 250, tag/category lists, and discussion signals. Treat `latest/new books` as discovery only, not the backbone of the final list.
 - Chinese reading communities and media: Douban, WeChat articles, 少数派, 看理想, 单读, 三联, 新京报书评周刊, Chinese publisher/bookstore lists.
 - Public WeRead charts or search signals; do not use personal WeRead recommendations unless explicitly requested.
 - Reputable global media lists: The New Yorker, NYT, Guardian, NPR, Financial Times, Economist, LARB. Use these mainly to discover candidates, then check whether there is a Chinese edition, Chinese translation, or Chinese discussion signal before recommending.
 - Goodreads, Amazon Charts, NYT Best Sellers: use as supporting popularity/quality signals, not as the primary default output source for books.
+
+## Book Mix Constraints
+
+For normal weekly digests, avoid making the book section a new-release feed.
+
+For 5 books, prefer:
+
+- 1 recent hot/new Chinese-readable book.
+- 1 stable high-score or long-tail book with enough ratings/discussion.
+- 1 classic or modern classic, preferably with an active Chinese edition/discussion.
+- 1 nonfiction/humanities/social-science/community pick from media or reading communities.
+- 1 discovery item, clearly marked if evidence is early.
+
+For 10 books, prefer:
+
+- No more than 3 new books from latest/new-book pages.
+- At least 3 backlist, classic, modern classic, or long-term high-score books.
+- At least 2 items from media/community/publisher/bookstore lists outside Douban latest.
+- No more than 40% from any one source family.
+- Items with fewer than 200 ratings should be marked as `新书观察位` or `样本偏小`, and should not dominate the list.
 
 Useful search patterns:
 
