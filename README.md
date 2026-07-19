@@ -7,10 +7,6 @@
 
 An Agent Skill for public-trend-based book, movie, and TV recommendations.
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=cody1991/culture-trend-curator&type=Date)](https://www.star-history.com/#cody1991/culture-trend-curator&Date)
-
 This skill was created and tested for CodeBuddy, but the structure is intentionally simple: `SKILL.md` + `references/` + optional `scripts/`. Any agent/runtime that can load a `SKILL.md`-style skill can adapt it.
 
 ## What it does
