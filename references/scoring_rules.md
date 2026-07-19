@@ -118,7 +118,8 @@ For 10-book digests: cap latest/new-book-page candidates at 3; include at least 
 
 Movies/TV:
 
-- 2 currently hot films or shows.
-- 1 high-quality recent release.
-- 1 classic catch-up item.
-- 1 discovery item.
+- 1 Chinese-watchable/discussable current hot item.
+- 1 high-quality recent film or show with cross-source quality signal.
+- 1 streaming or public-discussion heat item, clearly marked as heat if quality is not yet stable.
+- 1 cinephile/author/discovery item.
+- 1 global film-history classic catch-up item.

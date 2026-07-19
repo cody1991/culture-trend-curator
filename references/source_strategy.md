@@ -14,6 +14,18 @@ Do not treat one viral list as enough evidence.
 
 Use public charts, public rankings, media lists, awards, critic lists, platform-wide ratings, and public discussion signals. Use personal sources only when the user explicitly requests personal-history mode.
 
+## Source Quality Priority
+
+Prefer harder sources over soft reposts:
+
+1. Official pages: publisher, author, film official site, festival, award, platform report.
+2. Canonical platforms: Douban subject pages, IMDb, Letterboxd, Rotten Tomatoes, Metacritic, WeRead public charts.
+3. Reputable media and criticism: 澎湃、三联、单读、新京报书评周刊、看理想、少数派、RogerEbert, BFI, Sight & Sound, NYT, Guardian.
+4. Community discussion: Bilibili reviews, Douban reviews, Reddit/X/YouTube discussion.
+5. Reposts and aggregators: use only as supporting signals, not as the sole source when better sources exist.
+
+When a candidate is supported only by reposts/aggregators, mark the evidence as weak or keep it out of the final list.
+
 ## Default Locale and Availability Rule
 
 Prioritize recommendations that are useful in a Chinese-language context:
