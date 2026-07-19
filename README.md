@@ -1,5 +1,10 @@
 # culture-trend-curator
 
+[![GitHub stars](https://img.shields.io/github/stars/cody1991/culture-trend-curator?style=social)](https://github.com/cody1991/culture-trend-curator/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/cody1991/culture-trend-curator?style=social)](https://github.com/cody1991/culture-trend-curator/network/members)
+[![Last commit](https://img.shields.io/github/last-commit/cody1991/culture-trend-curator)](https://github.com/cody1991/culture-trend-curator/commits/main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 An Agent Skill for public-trend-based book, movie, and TV recommendations.
 
 This skill was created and tested for CodeBuddy, but the structure is intentionally simple: `SKILL.md` + `references/` + optional `scripts/`. Any agent/runtime that can load a `SKILL.md`-style skill can adapt it.
