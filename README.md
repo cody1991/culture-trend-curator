@@ -75,13 +75,17 @@ Use this short prompt for a WeChat Official Account article:
 - 正文要像公众号文章，不要像资料卡
 - 条目标题和来源要保留可点击链接
 - 生成一个 Markdown 文件作为最终产物
-- 如果合适，生成公众号封面；生成物放到本地 ignored 目录，不要提交到 GitHub
+- 如果合适，生成公众号封面
+- 把文章和封面放到同一个本地 ignored 日期目录，例如 generated/YYYYMMDD/
+- 不要把生成物提交到 GitHub
 ```
 
 Recommended local output locations:
 
-- `generated/weekly-culture-digest-YYYY-MM-DD.md` for article drafts and reports.
-- `assets/` or `generated/` for one-off cover images.
+- `generated/YYYYMMDD/article.md` for the publishable draft.
+- `generated/YYYYMMDD/cover.png` for the WeChat cover image.
+- `generated/YYYYMMDD/cover.svg` for editable local cover sources when applicable.
+- `generated/YYYYMMDD/candidates.json` and `generated/YYYYMMDD/ranked.json` when keeping the research/ranking trail.
 - Keep generated output ignored by Git unless it is a reusable skill asset.
 
 ## Suggested Weekly Automation Prompt

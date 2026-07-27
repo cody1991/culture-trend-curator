@@ -14,7 +14,10 @@ WeChat Official Account articles should read like publishable essays, not intern
 
 Default output:
 
-- Create or provide a Markdown article artifact, such as `weekly-culture-digest-YYYY-MM-DD.md`, unless the user asks for inline-only output.
+- Create or provide a Markdown article artifact unless the user asks for inline-only output.
+- Put all artifacts for one publishing run in one ignored date directory, such as `generated/YYYYMMDD/`.
+- Use `generated/YYYYMMDD/article.md` for the publishable draft and `generated/YYYYMMDD/cover.png` for the WeChat cover image.
+- If generating an editable local cover source, save it as `generated/YYYYMMDD/cover.svg` or another source file in the same directory.
 - Include title, optional subtitle/summary, cover image suggestion or asset path, body, and references.
 - Keep score details and raw ranking evidence out of the main body unless they serve the article's argument.
 - Put source links inline on titles only if the user's publishing workflow preserves them. For the final references section, always use plain text lines instead of Markdown links, bullets, numbered lists, or indentation.
