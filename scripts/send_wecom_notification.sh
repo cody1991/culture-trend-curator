@@ -56,8 +56,19 @@ send_payload() {
 webhook_key="${webhook_url##*key=}"
 webhook_key="${webhook_key%%&*}"
 
-# The validated paths and API identifiers contain only JSON-safe characters.
-text_payload=$(printf '{"msgtype":"text","text":{"content":"本周书影趋势公众号稿已生成\\n文章：%s\\n封面：%s\\n请检查后发布。"}}' "$article_path" "$cover_path")
+article_title=$(/usr/bin/sed -n 's/^# //p' "$article_path" | /usr/bin/head -n 1)
+article_summary=$(/usr/bin/sed -n 's/^> //p' "$article_path" | /usr/bin/head -n 1)
+
+if [[ -z "$article_title" ]]; then
+  article_title="本周书影趋势已更新"
+fi
+
+text_content="本周书影趋势\n${article_title}"
+if [[ -n "$article_summary" ]]; then
+  text_content+="\n${article_summary}"
+fi
+text_content+="\n\n5 本书 + 5 部影视，封面和原文见下方。"
+text_payload=$(python3 -c 'import json, sys; print(json.dumps({"msgtype": "text", "text": {"content": sys.argv[1]}}, ensure_ascii=False))' "$text_content")
 send_payload "$text_payload"
 
 cover_base64=$(/usr/bin/base64 -i "$cover_path" | /usr/bin/tr -d '\n')
