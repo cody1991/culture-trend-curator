@@ -4,7 +4,7 @@ Use this reference when the user asks to publish, post, send, or adapt the diges
 
 ## General Rule
 
-Always preserve source links as clickable Markdown links in any Markdown artifact. Do not leave important evidence as plain text URLs unless the target platform requires plain URLs.
+Preserve source URLs in every Markdown artifact. Use clickable Markdown links for normal Markdown, newsletters, group messages, and source links attached to individual item titles. Use platform-safe plain URL formats when the target editor is known to strip or mis-convert Markdown links.
 
 When the target platform does not support Markdown directly, still create a `.md` source artifact when the user asks for a file or reusable output. Explain that the Markdown can be converted to rich text with a WeChat Markdown editor such as MarkNice or doocs/md, or copied section by section into the platform editor.
 
@@ -17,7 +17,7 @@ Default output:
 - Create or provide a Markdown article artifact, such as `weekly-culture-digest-YYYY-MM-DD.md`, unless the user asks for inline-only output.
 - Include title, optional subtitle/summary, cover image suggestion or asset path, body, and references.
 - Keep score details and raw ranking evidence out of the main body unless they serve the article's argument.
-- Put source links inline on titles or in a compact references section at the end.
+- Put source links inline on titles when they survive the user's publishing workflow. For the final references section, prefer platform-safe plain URLs instead of Markdown link bullets.
 - Use clear section headings and short paragraphs.
 - Build a unifying editorial theme before the list, for example work fatigue, gender reversal, summer blockbusters, medical-system pressure, or classic catch-up.
 - Preserve the required recommendation count when requested, but avoid making the article feel like ten isolated cards.
@@ -50,14 +50,19 @@ Closing synthesis.
 
 ## 参考来源
 
-- [Source name](url)
+1. Source name
+   URL: https://example.com
 ```
 
 WeChat writing constraints:
 
 - Do not rely on Markdown rendering in the official editor. Prepare Markdown as the source file; convert to rich text before publishing if needed.
-- Avoid a dense bullet list for every item. Use bullets only for `适合` and `提示`, or for the final references.
-- Use source links on titles when a single canonical source is enough. Use references at the end when multiple sources support the item.
+- Avoid a dense bullet list for every item. Use bullets only for `适合` and `提示`.
+- Do not format the final references as `- [Source name](url)`. Some WeChat Markdown auto-conversion paths can strip the linked text and leave only empty list markers.
+- Format final references as numbered plain-text entries:
+  `1. Source name`
+  `   URL: https://example.com`
+- Use source links on item titles only when a single canonical source is enough; if the editor strips those links, move the URL to a nearby plain-text `来源：...` line.
 - For book items with fewer than 200 ratings, explicitly write `新书观察位 / 样本偏小` in the body.
 - For films/TV, keep one global classic catch-up slot unless the user says otherwise.
 
