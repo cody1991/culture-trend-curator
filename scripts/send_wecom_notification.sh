@@ -41,15 +41,45 @@ if [[ -z "$webhook_url" ]]; then
   exit 67
 fi
 
-# The validated paths contain only JSON-safe characters, keeping the payload portable.
-payload=$(printf '{"msgtype":"text","text":{"content":"本周书影趋势公众号稿已生成\\n文章：%s\\n封面：%s\\n请检查后发布。"}}' "$article_path" "$cover_path")
+send_payload() {
+  /usr/bin/curl \
+    --fail-with-body \
+    --silent \
+    --show-error \
+    --max-time 20 \
+    --request POST \
+    --header 'Content-Type: application/json' \
+    --data "$1" \
+    "$webhook_url"
+}
 
-/usr/bin/curl \
+webhook_key="${webhook_url##*key=}"
+webhook_key="${webhook_key%%&*}"
+
+# The validated paths and API identifiers contain only JSON-safe characters.
+text_payload=$(printf '{"msgtype":"text","text":{"content":"本周书影趋势公众号稿已生成\\n文章：%s\\n封面：%s\\n请检查后发布。"}}' "$article_path" "$cover_path")
+send_payload "$text_payload"
+
+cover_base64=$(/usr/bin/base64 -i "$cover_path" | /usr/bin/tr -d '\n')
+cover_md5=$(/sbin/md5 -q "$cover_path")
+image_payload=$(printf '{"msgtype":"image","image":{"base64":"%s","md5":"%s"}}' "$cover_base64" "$cover_md5")
+send_payload "$image_payload"
+
+upload_url="https://qyapi.weixin.qq.com/cgi-bin/webhook/upload_media?key=${webhook_key}&type=file"
+upload_response=$(/usr/bin/curl \
   --fail-with-body \
   --silent \
   --show-error \
   --max-time 20 \
   --request POST \
-  --header 'Content-Type: application/json' \
-  --data "$payload" \
-  "$webhook_url"
+  --form "media=@${article_path}" \
+  "$upload_url")
+
+if [[ ! "$upload_response" =~ '"media_id":"([^"]+)"' ]]; then
+  print -u2 "WeCom did not return a media_id when uploading the article."
+  exit 68
+fi
+
+media_id="${match[1]}"
+file_payload=$(printf '{"msgtype":"file","file":{"media_id":"%s"}}' "$media_id")
+send_payload "$file_payload"

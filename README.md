@@ -104,7 +104,7 @@ After `article.md` and `cover.png` have both been generated, the automation can 
 scripts/send_wecom_notification.sh generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
 ```
 
-The script sends a short WeCom reminder with the two local artifact paths. A non-zero exit means the notification did not send; the main article artifacts remain untouched. This optional delivery integration belongs in the automation configuration and README, rather than the core curation instructions in `SKILL.md`.
+The script sends a text reminder, the `cover.png` image, and `article.md` as a downloadable WeCom file attachment. A non-zero exit means the notification did not finish; the main article artifacts remain untouched. This optional delivery integration belongs in the automation configuration and README, rather than the core curation instructions in `SKILL.md`.
 
 ## Suggested Weekly Automation Prompt
 
