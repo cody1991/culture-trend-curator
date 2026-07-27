@@ -88,6 +88,18 @@ Recommended local output locations:
 - `generated/YYYYMMDD/candidates.json` and `generated/YYYYMMDD/ranked.json` when keeping the research/ranking trail.
 - Keep generated output ignored by Git unless it is a reusable skill asset.
 
+## Optional WeCom Completion Notification
+
+For a local weekly automation, store the WeCom group robot webhook in the macOS Keychain under the service name `culture-trend-curator.wecom-webhook`. Do not put the webhook in Git, an automation prompt, or a `.env` file that could be copied accidentally.
+
+After `article.md` and `cover.png` have both been generated, the automation can run:
+
+```bash
+scripts/send_wecom_notification.sh generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+```
+
+The script sends a short WeCom reminder with the two local artifact paths. A non-zero exit means the notification did not send; the main article artifacts remain untouched.
+
 ## Suggested Weekly Automation Prompt
 
 ```text
@@ -119,7 +131,8 @@ Recommended schedule: weekly, Sunday 20:00.
 │   └── source_strategy.md
 └── scripts/
     ├── rank_items.py
-    └── render_digest.py
+    ├── render_digest.py
+    └── send_wecom_notification.sh
 ```
 
 ## Optional Scripts
