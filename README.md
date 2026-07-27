@@ -106,6 +106,18 @@ scripts/send_wecom_notification.sh generated/YYYYMMDD/article.md generated/YYYYM
 
 The script sends the article title, `cover.png` image, and `article.md` as a downloadable WeCom file attachment. Pass `--include-body` to additionally send the article as WeCom Markdown messages; long articles are split below the per-message limit. A non-zero exit means the notification did not finish; the main article artifacts remain untouched.
 
+## Daily English Dashboard
+
+The repository also includes a local-first dashboard for daily listening and speaking practice. It stores completion, skip, and difficulty feedback in the ignored `.learning/state.json` file, so no account or database is required for the first version.
+
+Start it with:
+
+```bash
+python3 app/server.py
+```
+
+Then open `http://127.0.0.1:4173`. The seeded lesson demonstrates the format: one source, a listening prompt, a short speaking task, reusable phrases, and a review queue. A future daily-English curation skill can write the same local state file before sending a WeCom reminder.
+
 ## Suggested Weekly Automation Prompt
 
 ```text
@@ -130,6 +142,10 @@ Recommended schedule: weekly, Sunday 20:00.
 ```text
 .
 ├── SKILL.md
+├── app/
+│   ├── data/seed_state.json
+│   ├── public/
+│   └── server.py
 ├── references/
 │   ├── output_format.md
 │   ├── publishing_formats.md
