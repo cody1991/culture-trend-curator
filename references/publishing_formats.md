@@ -18,7 +18,7 @@ Default output:
 - Put all artifacts for one publishing run in one ignored date directory, such as `generated/YYYYMMDD/`.
 - Use `generated/YYYYMMDD/article.md` for the publishable draft and `generated/YYYYMMDD/cover.png` for the WeChat cover image.
 - If generating an editable local cover source, save it as `generated/YYYYMMDD/cover.svg` or another source file in the same directory.
-- Include title, optional subtitle/summary, cover image suggestion or asset path, body, and references.
+- Include title, cover image suggestion or asset path, body, and references. Do not add a separate subtitle or summary block by default.
 - Keep score details and raw ranking evidence out of the main body unless they serve the article's argument.
 - Put source links inline on titles only if the user's publishing workflow preserves them. For the final references section, always use plain text lines instead of Markdown links, bullets, numbered lists, or indentation.
 - Use clear section headings and short paragraphs.
@@ -29,8 +29,6 @@ Recommended structure:
 
 ```markdown
 # Title
-
-> Summary / deck.
 
 Cover: path-or-brief
 
@@ -75,6 +73,15 @@ Use a compact Markdown digest.
 - Include slot labels.
 - Keep links clickable: `[豆瓣](url)` or `[来源](url)`.
 - Use `完整来源见报告文件` only when a longer artifact exists.
+
+### Local WeCom Robot Delivery
+
+This repository includes `scripts/send_wecom_notification.sh` for an explicitly configured local WeCom group robot.
+
+- Store `WECOM_WEBHOOK_URL` in the ignored project-root `.env`; never add the Webhook to Git or skill instructions.
+- Run the script only after `generated/YYYYMMDD/article.md` and `cover.png` exist.
+- Default delivery sends the article title, cover image, and Markdown file attachment.
+- Pass `--include-body` only when the user explicitly wants the complete article delivered as multiple WeCom Markdown messages.
 
 ## Newsletter
 

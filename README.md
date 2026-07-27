@@ -104,7 +104,7 @@ After `article.md` and `cover.png` have both been generated, the automation can 
 scripts/send_wecom_notification.sh generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
 ```
 
-The script extracts the article title and opening summary for a useful text notification, then sends the `cover.png` image and `article.md` as a downloadable WeCom file attachment. Pass `--include-body` to additionally send the article as WeCom Markdown messages; long articles are split below the per-message limit. A non-zero exit means the notification did not finish; the main article artifacts remain untouched. This optional delivery integration belongs in the automation configuration and README, rather than the core curation instructions in `SKILL.md`.
+The script sends the article title, `cover.png` image, and `article.md` as a downloadable WeCom file attachment. Pass `--include-body` to additionally send the article as WeCom Markdown messages; long articles are split below the per-message limit. A non-zero exit means the notification did not finish; the main article artifacts remain untouched.
 
 ## Suggested Weekly Automation Prompt
 

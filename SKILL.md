@@ -62,6 +62,11 @@ Assume the default digest is weekly unless the user specifies otherwise:
    - Include for each item: recommendation reason, why now, source signal, and risk note.
    - Use clickable Markdown links for item titles, source notes, and final references when URLs are available.
    - Save the final publishable draft as a `.md` file when the user asks for a concrete artifact or platform-ready article.
+   - For configured WeCom delivery, use `scripts/send_wecom_notification.sh` only after the article and cover exist. Keep the Webhook in ignored local configuration; never put it in skill instructions, artifacts, or Git.
+
+## Optional Delivery
+
+When the user asks to send a completed digest to a configured WeCom group, read the delivery instructions in `references/publishing_formats.md`. The default delivery is a title notification, cover image, and Markdown attachment. Send the full article body only when explicitly requested because it may span several group messages.
 
 5. Save recommendation history when appropriate.
    - If running repeatedly, store emitted titles in a local history JSON file in the caller's project or chosen output directory.

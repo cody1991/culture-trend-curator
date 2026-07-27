@@ -66,16 +66,12 @@ webhook_key="${webhook_url##*key=}"
 webhook_key="${webhook_key%%&*}"
 
 article_title=$(/usr/bin/sed -n 's/^# //p' "$article_path" | /usr/bin/head -n 1)
-article_summary=$(/usr/bin/sed -n 's/^> //p' "$article_path" | /usr/bin/head -n 1)
 
 if [[ -z "$article_title" ]]; then
   article_title="本周书影趋势已更新"
 fi
 
 text_content=$'本周书影趋势\n'"${article_title}"
-if [[ -n "$article_summary" ]]; then
-  text_content+=$'\n'"${article_summary}"
-fi
 text_content+=$'\n\n5 本书 + 5 部影视，封面和原文见下方。'
 text_payload=$(python3 -c 'import json, sys; print(json.dumps({"msgtype": "text", "text": {"content": sys.argv[1]}}, ensure_ascii=False))' "$text_content")
 send_payload "$text_payload"
