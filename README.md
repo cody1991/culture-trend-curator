@@ -58,6 +58,32 @@ Then point your agent to the cloned folder or copy it into that agent's skill di
 用 culture-trend-curator 推荐几部经典补课剧，比如类似绝命毒师、风骚律师这种级别的。
 ```
 
+## Recommended Usage
+
+For live weekly recommendations, start a fresh agent conversation whenever possible. This keeps the agent focused on the current week instead of carrying stale candidates, old source notes, or previous editorial angles.
+
+Use this short prompt for a WeChat Official Account article:
+
+```text
+用 culture-trend-curator 生成本周书影趋势推荐，要适合微信公众号发表。
+
+要求：
+- 基于公共榜单、近期热门、高分口碑、媒体推荐和长期经典价值
+- 推荐 5 本书 + 5 部影视
+- 书籍以中文可读为主，不要做成新书榜搬运
+- 影视以中文可看/可讨论为主，保留 1 个全球影史经典补课位
+- 正文要像公众号文章，不要像资料卡
+- 条目标题和来源要保留可点击链接
+- 生成一个 Markdown 文件作为最终产物
+- 如果合适，生成公众号封面；生成物放到本地 ignored 目录，不要提交到 GitHub
+```
+
+Recommended local output locations:
+
+- `generated/weekly-culture-digest-YYYY-MM-DD.md` for article drafts and reports.
+- `assets/` or `generated/` for one-off cover images.
+- Keep generated output ignored by Git unless it is a reusable skill asset.
+
 ## Suggested Weekly Automation Prompt
 
 ```text
