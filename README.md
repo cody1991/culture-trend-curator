@@ -18,6 +18,8 @@ This skill was created and tested for CodeBuddy, but the structure is intentiona
 - Prioritizes movies/TV that are watchable or discussable in Chinese-language contexts.
 - Keeps one global film-history classic catch-up slot by default.
 - Records recommendation history if requested, but does not deduplicate by default unless explicitly asked.
+- Adapts digests for publishable formats such as WeChat Official Account articles, newsletters, group messages, and short social posts.
+- Preserves clickable source links in Markdown output whenever URLs are available.
 
 ## Quick Start
 
@@ -82,6 +84,7 @@ Recommended schedule: weekly, Sunday 20:00.
 ├── SKILL.md
 ├── references/
 │   ├── output_format.md
+│   ├── publishing_formats.md
 │   ├── scoring_rules.md
 │   └── source_strategy.md
 └── scripts/
@@ -102,6 +105,14 @@ Render a Markdown digest and append emitted items to history:
 ```bash
 python3 scripts/render_digest.py ranked.json --out digest.md --books 5 --films 5 --history-out recommendation_history.json --mode weekly
 ```
+
+When preparing a publishable article, save the final draft as a Markdown artifact, for example:
+
+```text
+weekly-culture-digest-2026-07-27.md
+```
+
+For platforms such as WeChat Official Account that do not directly render Markdown in the official editor, use the Markdown file as the source draft and convert/copy it into rich text.
 
 ## Requirements
 

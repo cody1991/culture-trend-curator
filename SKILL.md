@@ -31,6 +31,8 @@ Assume the default digest is weekly unless the user specifies otherwise:
 - Style: concise editorial curation.
 - Personal data: default to public sources; only use personal records when explicitly requested.
 - Sources: prefer public rankings, reputable media lists, platform charts, and cross-source consensus.
+- Links: preserve clickable source links in the final Markdown whenever a URL is available.
+- Artifacts: when the user asks for a publishable output, report, article, or reusable result, create a `.md` artifact instead of only answering inline.
 
 ## Workflow
 
@@ -54,9 +56,12 @@ Assume the default digest is weekly unless the user specifies otherwise:
 
 4. Render the digest.
    - Read `references/output_format.md`.
+   - If the user asks to publish, post, send to a platform, or adapt for WeChat Official Account/newsletter/social, read `references/publishing_formats.md`.
    - Use `scripts/rank_items.py` when candidates are saved as JSON.
    - Use `scripts/render_digest.py` to generate Markdown from ranked JSON.
    - Include for each item: recommendation reason, why now, source signal, and risk note.
+   - Use clickable Markdown links for item titles, source notes, and final references when URLs are available.
+   - Save the final publishable draft as a `.md` file when the user asks for a concrete artifact or platform-ready article.
 
 5. Save recommendation history when appropriate.
    - If running repeatedly, store emitted titles in a local history JSON file in the caller's project or chosen output directory.

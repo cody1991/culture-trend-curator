@@ -11,7 +11,7 @@ Use this structure by default:
 
 ## 书籍
 
-### 1. 《标题》 — 作者
+### 1. [《标题》](URL) — 作者
 - 槽位：近期热门 / 稳定口碑 / 经典补课 / 社科人文 / 小众发现 / 新书观察位
 - 类型：文学 / 历史 / 科幻 / 非虚构
 - 推荐理由：一句话说明为什么值得读。
@@ -19,11 +19,11 @@ Use this structure by default:
 - 质量信号：评分、评分人数、榜单来源、媒体推荐。
 - 稳定性：长期口碑 / 新书观察位 / 样本偏小 / 多来源交叉验证。
 - 风险提示：节奏慢、门槛高、题材压抑、篇幅长等。
-- 链接：URL
+- 来源链接：[豆瓣/平台/媒体](URL)
 
 ## 影视
 
-### 1. 《标题》 — 导演/主创
+### 1. [《标题》](URL) — 导演/主创
 - 槽位：中文热度 / 高口碑新作 / 流媒体热度观察 / 作者电影 / 全球影史经典补课
 - 类型：电影 / 剧集；剧情 / 悬疑 / 纪录片等。
 - 推荐理由：一句话说明为什么值得看。
@@ -32,7 +32,7 @@ Use this structure by default:
 - 中文可看/可讨论性：中文片名、中文评论/讨论、流媒体/院线/影迷社群可见度。
 - 稳定性：稳定口碑 / 热度观察 / 新片样本未稳 / 经典共识。
 - 风险提示：节奏慢、暴力、压抑、门槛高、烂尾风险等。
-- 链接：URL
+- 来源链接：[豆瓣/平台/媒体](URL)
 
 ## 本期观察
 
@@ -53,6 +53,7 @@ Each recommended item should include at least two signals where possible:
 
 - A recent trend/list signal.
 - A quality signal such as rating, critic consensus, award, or repeated source endorsement.
+- A clickable source link when a URL is available.
 
 For books, also include a slot label. If a book mainly comes from a latest/new-book page and has fewer than 200 ratings, mark it as `新书观察位` or `样本偏小`; do not present it as stable high-score consensus.
 
@@ -66,12 +67,12 @@ For WeCom, Slack, or short push notifications, compress to:
 # 本周书影推荐
 
 ## 书
-1. 《标题》（槽位）：推荐理由；稳定性/风险一句话；链接。
-2. 《标题》（槽位）：推荐理由；稳定性/风险一句话；链接。
+1. [《标题》](URL)（槽位）：推荐理由；稳定性/风险一句话。
+2. [《标题》](URL)（槽位）：推荐理由；稳定性/风险一句话。
 
 ## 影
-1. 《标题》（槽位）：推荐理由；稳定性/风险一句话；链接。
-2. 《标题》（槽位）：推荐理由；稳定性/风险一句话；链接。
+1. [《标题》](URL)（槽位）：推荐理由；稳定性/风险一句话。
+2. [《标题》](URL)（槽位）：推荐理由；稳定性/风险一句话。
 
 完整来源与候选池见报告文件。
 ```

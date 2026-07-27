@@ -81,12 +81,22 @@ def fmt_sources(item: dict[str, Any]) -> str:
     return text or "候选池来源"
 
 
+def md_link(label: Any, url: Any) -> str:
+    text = str(label or "").strip()
+    href = str(url or "").strip()
+    if not text:
+        text = "未命名"
+    if not href:
+        return text
+    return f"[{text}]({href})"
+
+
 def render_section(title: str, items: list[dict[str, Any]]) -> list[str]:
     lines = [f"## {title}", ""]
     for idx, item in enumerate(items, 1):
         name = item.get("title", "未命名")
         creator = item.get("creator") or item.get("author") or item.get("director") or ""
-        heading = f"### {idx}. 《{name}》"
+        heading = f"### {idx}. {md_link(f'《{name}》', item.get('url'))}"
         if creator:
             heading += f" — {creator}"
         evidence = item.get("evidence", "近期进入候选榜单")
@@ -100,7 +110,7 @@ def render_section(title: str, items: list[dict[str, Any]]) -> list[str]:
             f"- 风险提示：{item.get('risk') or '暂无明显风险，按个人题材偏好选择。'}",
         ])
         if item.get("url"):
-            lines.append(f"- 链接：{item['url']}")
+            lines.append(f"- 来源链接：{md_link(fmt_sources(item), item['url'])}")
         lines.append("")
     return lines
 

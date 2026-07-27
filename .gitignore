@@ -6,3 +6,5 @@ __pycache__/
 recommendation_history.json
 ranked.json
 digest.md
+assets/
+generated/
