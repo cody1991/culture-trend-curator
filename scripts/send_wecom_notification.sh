@@ -5,13 +5,22 @@ set -eu
 script_dir="${0:A:h}"
 env_file="${script_dir:h}/.env"
 
-if [[ $# -ne 2 ]]; then
-  print -u2 "Usage: $0 generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png"
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+  print -u2 "Usage: $0 generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png [--include-body]"
   exit 64
 fi
 
 article_path="$1"
 cover_path="$2"
+include_body=false
+
+if [[ $# -eq 3 ]]; then
+  if [[ "$3" != "--include-body" ]]; then
+    print -u2 "Unknown option: $3"
+    exit 64
+  fi
+  include_body=true
+fi
 
 if [[ ! "$article_path" =~ '^generated/[0-9]{8}/article\.md$' ]] || [[ ! -f "$article_path" ]]; then
   print -u2 "Article must be an existing generated/YYYYMMDD/article.md file."
@@ -63,11 +72,11 @@ if [[ -z "$article_title" ]]; then
   article_title="本周书影趋势已更新"
 fi
 
-text_content="本周书影趋势\n${article_title}"
+text_content=$'本周书影趋势\n'"${article_title}"
 if [[ -n "$article_summary" ]]; then
-  text_content+="\n${article_summary}"
+  text_content+=$'\n'"${article_summary}"
 fi
-text_content+="\n\n5 本书 + 5 部影视，封面和原文见下方。"
+text_content+=$'\n\n5 本书 + 5 部影视，封面和原文见下方。'
 text_payload=$(python3 -c 'import json, sys; print(json.dumps({"msgtype": "text", "text": {"content": sys.argv[1]}}, ensure_ascii=False))' "$text_content")
 send_payload "$text_payload"
 
@@ -94,3 +103,37 @@ fi
 media_id="${match[1]}"
 file_payload=$(printf '{"msgtype":"file","file":{"media_id":"%s"}}' "$media_id")
 send_payload "$file_payload"
+
+if [[ "$include_body" == true ]]; then
+  python3 - "$article_path" <<'PY' | while IFS= read -r markdown_payload; do
+import json
+import sys
+from pathlib import Path
+
+max_bytes = 3900
+lines = [
+    line for line in Path(sys.argv[1]).read_text(encoding="utf-8").splitlines()
+    if not line.startswith("封面：")
+]
+chunks = []
+chunk = ""
+
+for line in lines:
+    candidate = f"{chunk}\n{line}" if chunk else line
+    if chunk and len(candidate.encode("utf-8")) > max_bytes:
+        chunks.append(chunk)
+        chunk = line
+    else:
+        chunk = candidate
+
+if chunk:
+    chunks.append(chunk)
+
+for index, chunk in enumerate(chunks, start=1):
+    if len(chunks) > 1:
+        chunk = f"第 {index}/{len(chunks)} 段\n\n{chunk}"
+    print(json.dumps({"msgtype": "markdown", "markdown": {"content": chunk}}, ensure_ascii=False))
+PY
+    send_payload "$markdown_payload"
+  done
+fi
