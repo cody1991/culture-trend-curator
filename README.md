@@ -90,7 +90,13 @@ Recommended local output locations:
 
 ## Optional WeCom Completion Notification
 
-For a local weekly automation, store the WeCom group robot webhook in the macOS Keychain under the service name `culture-trend-curator.wecom-webhook`. Do not put the webhook in Git, an automation prompt, or a `.env` file that could be copied accidentally.
+For a local weekly automation, create the ignored project-root `.env` file with one line:
+
+```text
+WECOM_WEBHOOK_URL=https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=your-key
+```
+
+The `.env` file is ignored by Git. Do not put the webhook in Git or an automation prompt.
 
 After `article.md` and `cover.png` have both been generated, the automation can run:
 
@@ -98,7 +104,7 @@ After `article.md` and `cover.png` have both been generated, the automation can 
 scripts/send_wecom_notification.sh generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
 ```
 
-The script sends a short WeCom reminder with the two local artifact paths. A non-zero exit means the notification did not send; the main article artifacts remain untouched.
+The script sends a short WeCom reminder with the two local artifact paths. A non-zero exit means the notification did not send; the main article artifacts remain untouched. This optional delivery integration belongs in the automation configuration and README, rather than the core curation instructions in `SKILL.md`.
 
 ## Suggested Weekly Automation Prompt
 
