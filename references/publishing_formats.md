@@ -6,7 +6,7 @@ Use this reference when the user asks to publish, post, send, or adapt the diges
 
 Preserve source URLs in every Markdown artifact. Use clickable Markdown links for normal Markdown, newsletters, group messages, and source links attached to individual item titles. Use plain text URLs when the target editor is known to strip or mis-convert Markdown links.
 
-When the target platform does not support Markdown directly, still create a `.md` source artifact when the user asks for a file or reusable output. Explain that the Markdown can be converted to rich text with a WeChat Markdown editor such as MarkNice or doocs/md, or copied section by section into the platform editor.
+When the target platform does not support Markdown directly, still create a `.md` source artifact when the user asks for a file or reusable output. For WeChat Official Account uploads, convert this Markdown with the bundled uploader rather than relying on the editor to render Markdown.
 
 ## WeChat Official Account
 
@@ -56,7 +56,10 @@ Source name：https://example.com
 
 WeChat writing constraints:
 
-- Do not rely on Markdown rendering in the official editor. Prepare Markdown as the source file; convert to rich text before publishing if needed.
+- Keep Markdown as the editable source, but upload a constrained HTML fragment. Do not rely on Markdown rendering in the official editor.
+- Use the bundled uploader's validated editorial treatment by default: 16px body copy at 1.9 line height, a deep blue-green section title with a warm left rule, warm-brown item titles with a fine divider, and small muted reference lines. This visual hierarchy has been verified in the Official Account editor.
+- Use inline styles only. Do not depend on page-level CSS, JavaScript, animations, arbitrary web layouts, or external embeds; the editor may remove or neutralize them.
+- Keep the body to semantic, commonly accepted elements such as paragraphs, headings, links, lists, quotes, and code. The bundled uploader handles the cover image; add inline article images only with their own Official Account upload flow.
 - Avoid a dense bullet list for every item. Use bullets only for `适合` and `提示`.
 - Do not format the final references as Markdown links, bullets, numbered lists, footnotes, or indented URL lines. Some WeChat Markdown auto-conversion paths can strip linked text or list content and leave only empty markers.
 - Format final references as one plain-text line per source:
@@ -64,6 +67,16 @@ WeChat writing constraints:
 - Use source links on item titles only when a single canonical source is enough; if the editor strips those links, move the URL to a nearby plain-text `来源：...` line.
 - For book items with fewer than 200 ratings, explicitly write `新书观察位 / 样本偏小` in the body.
 - For films/TV, keep one global classic catch-up slot unless the user says otherwise.
+
+### Local Official-Account Draft Upload
+
+This repository includes `scripts/upload_wechat_draft.py` for a configured official account.
+
+- Store `WECHAT_APP_ID` and `WECHAT_APP_SECRET` in the ignored project-root `.env` or a secret manager; never add them to Git.
+- Run the script only after `generated/YYYYMMDD/article.md` and `cover.png` exist.
+- The default action uploads the cover and creates a draft. It does not publish.
+- Use `--publish` only when the user explicitly requests publication. A successful submission can still need platform review, so report the returned publication ID and ask the user to check final status in the official-account backend.
+- To correct an existing draft's copy or layout, use `--update-draft MEDIA_ID`; it updates article 1 in place and keeps its current cover. Prefer this to creating duplicate drafts.
 
 ## WeChat Group / Slack / WeCom
 

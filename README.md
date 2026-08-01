@@ -106,6 +106,37 @@ scripts/send_wecom_notification.sh generated/YYYYMMDD/article.md generated/YYYYM
 
 The script sends the article title, `cover.png` image, and `article.md` as a downloadable WeCom file attachment. Pass `--include-body` to additionally send the article as WeCom Markdown messages; long articles are split below the per-message limit. A non-zero exit means the notification did not finish; the main article artifacts remain untouched.
 
+## Optional WeChat Official Account Draft Upload
+
+For an official-account workflow, the repository includes `scripts/upload_wechat_draft.py`. It uploads the cover as permanent image material, converts the Markdown body to a safe HTML subset, and creates a **draft** in the account backend. It does not publish by default.
+
+Set these ignored local values in the project-root `.env` (or export them in the shell):
+
+```text
+WECHAT_APP_ID=your-official-account-app-id
+WECHAT_APP_SECRET=your-official-account-app-secret
+```
+
+Then upload a completed issue for review:
+
+```bash
+python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+```
+
+Review the created draft in the official-account backend before publishing. Only use the explicit `--publish` flag when automatic publication is intended and the account has the required API permission:
+
+```bash
+python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --publish
+```
+
+Optional `--author`, `--digest`, and `--source-url` parameters fill the equivalent WeChat article fields. Keep `WECHAT_APP_SECRET` only in `.env` or a secret manager; never add it to Git.
+
+To refresh the body styling of an existing draft without creating another article or uploading another cover, pass its draft `media_id`:
+
+```bash
+python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --update-draft DRAFT_MEDIA_ID
+```
+
 ## Suggested Weekly Automation Prompt
 
 ```text
@@ -138,7 +169,8 @@ Recommended schedule: weekly, Sunday 20:00.
 └── scripts/
     ├── rank_items.py
     ├── render_digest.py
-    └── send_wecom_notification.sh
+    ├── send_wecom_notification.sh
+    └── upload_wechat_draft.py
 ```
 
 ## Optional Scripts

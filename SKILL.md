@@ -63,6 +63,8 @@ Assume the default digest is weekly unless the user specifies otherwise:
    - Use clickable Markdown links for item titles, source notes, and final references when URLs are available.
    - Save the final publishable draft as a `.md` file when the user asks for a concrete artifact or platform-ready article.
    - For configured WeCom delivery, use `scripts/send_wecom_notification.sh` only after the article and cover exist. Keep the Webhook in ignored local configuration; never put it in skill instructions, artifacts, or Git.
+   - For a configured WeChat Official Account, use `scripts/upload_wechat_draft.py` only after the article and cover exist and the user authorizes draft creation. The script converts Markdown to the skill's validated, WeChat-safe editorial HTML; do not paste raw Markdown or depend on the editor to render it. It creates a draft by default; pass `--publish` only when the user explicitly authorizes publication. Keep `WECHAT_APP_SECRET` in ignored local configuration or a secret manager.
+   - When revising an existing WeChat draft, use `--update-draft MEDIA_ID` to preserve the cover and replace the body in place. Do not create a duplicate draft merely to adjust typography or copy.
 
 ## Optional Delivery
 
