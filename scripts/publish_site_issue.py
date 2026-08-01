@@ -365,6 +365,15 @@ def run_git(root: Path, arguments: list[str]) -> None:
         raise RuntimeError(result.stderr.strip() or result.stdout.strip() or "git command failed")
 
 
+def staged_paths(root: Path) -> list[str]:
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--name-only"], cwd=root, text=True, capture_output=True
+    )
+    if result.returncode:
+        raise RuntimeError(result.stderr.strip() or "could not inspect staged files")
+    return [line for line in result.stdout.splitlines() if line]
+
+
 def build_issue(article: Path, cover: Path, site_dir: Path, issue_date: str, dry_run: bool) -> list[Path]:
     issue = parse_issue(article.read_text(encoding="utf-8"), issue_date)
     archive_path = site_dir / "archive.json"
@@ -436,6 +445,11 @@ def main() -> int:
         return 0
     if args.commit:
         run_git(ROOT, ["add", "site"])
+        unrelated = [path for path in staged_paths(ROOT) if not path.startswith("site/")]
+        if unrelated:
+            raise RuntimeError(
+                "Refusing to commit unrelated staged files: " + ", ".join(unrelated)
+            )
         run_git(ROOT, ["commit", "-m", f"Publish culture issue {issue_date}"])
         if args.push:
             run_git(ROOT, ["push", "origin", "main"])
