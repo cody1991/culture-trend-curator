@@ -137,6 +137,18 @@ To refresh the body styling of an existing draft without creating another articl
 python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --update-draft DRAFT_MEDIA_ID
 ```
 
+## Public Reading Archive (GitHub Pages)
+
+`site/` is a zero-dependency editorial reading archive: it is deliberately separate from the ignored `generated/` working directory. Add only reviewed, public-ready issues and cover assets to `site/`.
+
+Preview it locally:
+
+```bash
+python3 -m http.server 4173 --directory site
+```
+
+The included GitHub Actions workflow deploys `site/` whenever `main` changes. In the repository's **Settings → Pages**, set the source to **GitHub Actions** once; subsequent pushes will publish the latest site automatically.
+
 ## Suggested Weekly Automation Prompt
 
 ```text

@@ -7,4 +7,6 @@ recommendation_history.json
 ranked.json
 digest.md
 assets/
+!site/assets/
+!site/assets/**
 generated/
