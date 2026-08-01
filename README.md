@@ -149,6 +149,15 @@ python3 -m http.server 4173 --directory site
 
 The included GitHub Actions workflow deploys `site/` whenever `main` changes. In the repository's **Settings → Pages**, set the source to **GitHub Actions** once; subsequent pushes will publish the latest site automatically.
 
+To turn a reviewed local issue into the public archive, then deploy it after one last local inspection:
+
+```bash
+python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --commit --push
+```
+
+The first command rebuilds the home page, issue page, archive list, and public cover without touching Git. The second is an explicit public release: it commits only `site/`, pushes to `main`, and lets GitHub Pages deploy it.
+
 ## Suggested Weekly Automation Prompt
 
 ```text

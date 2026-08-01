@@ -78,6 +78,22 @@ This repository includes `scripts/upload_wechat_draft.py` for a configured offic
 - Use `--publish` only when the user explicitly requests publication. A successful submission can still need platform review, so report the returned publication ID and ask the user to check final status in the official-account backend.
 - To correct an existing draft's copy or layout, use `--update-draft MEDIA_ID`; it updates article 1 in place and keeps its current cover. Prefer this to creating duplicate drafts.
 
+## GitHub Pages Reading Archive
+
+When the repository contains `site/`, the ignored `generated/YYYYMMDD/` folder remains the private production workspace. Do not make it public wholesale. After the WeChat draft and source Markdown have been reviewed, publish the selected issue into the public archive:
+
+```bash
+python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+```
+
+This updates `site/index.html`, writes `site/issues/YYYYMMDD/index.html`, copies a public cover to `site/assets/`, and refreshes `site/archive.json`. Preview it locally, then use the explicit public-release form:
+
+```bash
+python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --commit --push
+```
+
+`--commit --push` is intentionally opt-in: it publishes the reviewed issue through the repository's GitHub Pages workflow. Do not use it for an unreviewed draft, sensitive source notes, or an article the user has not approved for public release.
+
 ## WeChat Group / Slack / WeCom
 
 Use a compact Markdown digest.
