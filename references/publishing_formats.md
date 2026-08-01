@@ -94,6 +94,16 @@ python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YY
 
 `--commit --push` is intentionally opt-in: it publishes the reviewed issue through the repository's GitHub Pages workflow. Do not use it for an unreviewed draft, sensitive source notes, or an article the user has not approved for public release.
 
+### Authorized Automatic Weekly Release
+
+If the user explicitly authorizes the recurring job to publish immediately to both channels, use the single ordered release command after generation and local validation:
+
+```bash
+python3 scripts/release_weekly_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+```
+
+It creates an Official Account draft, submits it for publication, then rebuilds and pushes the public site. It stops before the site step when the WeChat submission fails. The returned WeChat `publish_id` confirms submission only; platform review or asynchronous publication can still fail, so report that identifier and final status when available.
+
 ## WeChat Group / Slack / WeCom
 
 Use a compact Markdown digest.

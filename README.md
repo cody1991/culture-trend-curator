@@ -158,6 +158,14 @@ python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YY
 
 The first command rebuilds the home page, issue page, archive list, and public cover without touching Git. The second is an explicit public release: it commits only `site/`, pushes to `main`, and lets GitHub Pages deploy it.
 
+For a recurring job that has been explicitly authorized to release immediately to both the Official Account and the public archive, use the ordered release command instead:
+
+```bash
+python3 scripts/release_weekly_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+```
+
+It submits the Official Account publication first, then commits and pushes the rebuilt site. A returned WeChat publication ID confirms submission, not necessarily completion of the platform's asynchronous review.
+
 ## Suggested Weekly Automation Prompt
 
 ```text

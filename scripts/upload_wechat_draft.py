@@ -401,12 +401,13 @@ def main() -> int:
     else:
         draft_id = create_draft(access_token, article)
         print(f"Draft created: {draft_id}")
-    print("Open the WeChat Official Account backend to review and publish it.")
 
     if args.publish:
         publish_id = publish_draft(access_token, draft_id)
         print(f"Publication submitted: {publish_id}")
         print("Check the WeChat backend or publication status API for the final result.")
+    else:
+        print("Open the WeChat Official Account backend to review and publish it.")
     return 0
 
 
