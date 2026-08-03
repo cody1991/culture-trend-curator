@@ -21,6 +21,7 @@ Default output:
 - Include title, cover image suggestion or asset path, body, and references. Do not add a separate subtitle or summary block by default.
 - Put the verified canonical Douban work page on every item title. Do not use any other page as a title link.
 - Immediately below every item heading, render the standard metadata line as a blockquote: `> 作品档案｜出版/上映：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：……`. This keeps evidence visible without making the prose read like a spreadsheet.
+- Follow the metadata with `豆瓣条目：URL` as visible plain text. The WeChat uploader deliberately renders item titles without external anchors and keeps this URL copyable, because the Official Account client can block outbound links. The Markdown source and static archive retain the canonical title link.
 - For the final references section, always use plain text lines instead of Markdown links, bullets, numbered lists, or indentation.
 - Use clear section headings and short paragraphs.
 - Build a unifying editorial theme before the list, for example work fatigue, gender reversal, summer blockbusters, medical-system pressure, or classic catch-up.

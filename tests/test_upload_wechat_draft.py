@@ -49,6 +49,17 @@ class MarkdownRenderingTests(unittest.TestCase):
         self.assertIn("font-size:13px", rendered)
         self.assertNotIn("<blockquote", rendered)
 
+    def test_item_titles_are_plain_but_douban_urls_remain_visible(self):
+        rendered = MODULE.markdown_to_html(
+            "### [《标题》](https://book.douban.com/subject/1/)｜作者\n\n"
+            "豆瓣条目：https://book.douban.com/subject/1/"
+        )
+
+        self.assertIn("<h3", rendered)
+        self.assertNotIn('<a href="https://book.douban.com/subject/1/"', rendered)
+        self.assertIn("豆瓣条目：https://book.douban.com/subject/1/", rendered)
+        self.assertIn("margin:-10px 0 20px", rendered)
+
     def test_article_payload_is_a_single_updateable_article(self):
         payload = MODULE.article_payload("标题", "<p>正文</p>", "cover-id", "作者", "摘要", "")
 

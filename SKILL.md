@@ -61,7 +61,7 @@ Assume the default digest is weekly unless the user specifies otherwise:
    - If the user asks to publish, post, send to a platform, or adapt for WeChat Official Account/newsletter/social, read `references/publishing_formats.md`.
    - Use `scripts/rank_items.py` when candidates are saved as JSON.
    - Use `scripts/render_digest.py` to generate Markdown from ranked JSON.
-   - Put the canonical Douban link on every item title, then immediately use one consistent metadata line: `> 作品档案｜出版/上映：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：……`.
+   - Put the canonical Douban link on every item title, then immediately use one consistent metadata line: `> 作品档案｜出版/上映：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：……` followed by `豆瓣条目：URL`. For WeChat, the uploader renders the title as plain text and leaves the URL visibly copyable; the static archive retains the clickable title link.
    - Give each item two concrete editorial paragraphs: explain the work's construction, voice, scene, motif, or formal choice, then explain its present reading/viewing value. Do not turn the copy into a sequence of score, ranking, and availability claims.
    - Use plain-text URLs in the final references for WeChat; do not make the references a Markdown list.
    - Save the final publishable draft as a `.md` file when the user asks for a concrete artifact or platform-ready article.

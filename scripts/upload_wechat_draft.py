@@ -36,6 +36,10 @@ REFERENCE_STYLE = (
     "margin:0 0 8px;font-size:12px;line-height:1.65;letter-spacing:0;"
     "color:#8a8178;word-break:break-all;text-align:left;"
 )
+DOUBAN_LINE_STYLE = (
+    "margin:-10px 0 20px;font-size:12px;line-height:1.65;letter-spacing:0;"
+    "color:#8a8178;word-break:break-all;text-align:left;"
+)
 WORK_META_STYLE = (
     "margin:0 0 20px;padding:9px 12px;border-left:2px solid #c9a28d;background:#f8f4ef;"
     "font-size:13px;line-height:1.72;letter-spacing:0.15px;color:#695a50;text-align:left;"
@@ -131,12 +135,14 @@ def upload_cover(access_token: str, cover_path: Path) -> str:
     return media_id
 
 
-def markdown_inline_to_html(text: str) -> str:
+def markdown_inline_to_html(text: str, *, render_links: bool = True) -> str:
     """Convert the intentionally small Markdown subset used by generated articles."""
     escaped = html.escape(text, quote=False)
 
     def link(match: re.Match[str]) -> str:
         label = match.group(1)
+        if not render_links:
+            return label
         url = html.escape(html.unescape(match.group(2)), quote=True)
         return (
             f'<a href="{url}" style="color:#9a5d45;text-decoration:none;'
@@ -164,7 +170,12 @@ def markdown_to_html(markdown: str) -> str:
         if paragraph:
             content = "<br/>".join(markdown_inline_to_html(line) for line in paragraph)
             is_meta = len(paragraph) == 1 and content.startswith("<em>") and content.endswith("</em>")
-            style = REFERENCE_STYLE if in_references else (META_STYLE if is_meta else BODY_STYLE)
+            is_douban_line = len(paragraph) == 1 and content.startswith("豆瓣条目：")
+            style = (
+                REFERENCE_STYLE
+                if in_references
+                else (DOUBAN_LINE_STYLE if is_douban_line else (META_STYLE if is_meta else BODY_STYLE))
+            )
             output.append(f"<p style=\"{style}\">{content}</p>")
             paragraph.clear()
 
@@ -207,7 +218,9 @@ def markdown_to_html(markdown: str) -> str:
             flush_paragraph()
             flush_list()
             level = len(heading.group(1))
-            heading_text = markdown_inline_to_html(heading.group(2))
+            heading_text = markdown_inline_to_html(
+                heading.group(2), render_links=level < 3
+            )
             in_references = html.unescape(re.sub(r"<[^>]+>", "", heading_text)).strip() == "参考来源"
             if level == 2:
                 output.append(

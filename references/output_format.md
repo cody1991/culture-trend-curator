@@ -13,6 +13,7 @@ Use this structure by default:
 
 ### 1. [《标题》](https://book.douban.com/subject/ID/)｜作者
 > 作品档案｜出版：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：文学 / 历史 / 科幻 / 非虚构
+豆瓣条目：https://book.douban.com/subject/ID/
 
 第一段写作品如何成立：叙述角度、结构、语言、人物关系或一个可感知的细节。
 
@@ -24,6 +25,7 @@ Use this structure by default:
 
 ### 1. [《标题》](https://movie.douban.com/subject/ID/)｜导演/主创
 > 作品档案｜上映：YYYY｜豆瓣：8.8（329,186 人评价）｜类型：电影 / 剧情 / 家庭
+豆瓣条目：https://movie.douban.com/subject/ID/
 
 第一段写镜头、表演、剪辑、声音或叙事安排如何工作。
 
@@ -50,7 +52,7 @@ Each recommended item should include at least two signals where possible:
 
 - A recent trend/list signal.
 - A quality signal such as rating, critic consensus, award, or repeated source endorsement.
-- A verified canonical Douban link on the title. Every normal pick must be at least 8.5 with 2,000+ book ratings or 10,000+ film/TV ratings.
+- A verified canonical Douban link on the title plus a visible plain-text `豆瓣条目：URL` line. Every normal pick must be at least 8.5 with 2,000+ book ratings or 10,000+ film/TV ratings.
 
 At most one item in the whole issue may be labelled `新作观察位`; it must still clear 8.2 and the lower 500/2,000 rating floors. If none qualifies, do not create an observation slot.
 
