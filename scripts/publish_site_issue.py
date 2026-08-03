@@ -212,7 +212,9 @@ def article_html(lines: list[str], references: bool = False) -> str:
             continue
         if line.startswith("> "):
             flush()
-            output.append(f"<blockquote>{inline_html(line[2:])}</blockquote>")
+            quote = line[2:]
+            class_name = " class=\"work-meta\"" if quote.startswith("作品档案｜") else ""
+            output.append(f"<blockquote{class_name}>{inline_html(quote)}</blockquote>")
             continue
         if references:
             flush()

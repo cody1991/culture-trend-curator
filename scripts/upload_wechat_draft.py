@@ -36,6 +36,10 @@ REFERENCE_STYLE = (
     "margin:0 0 8px;font-size:12px;line-height:1.65;letter-spacing:0;"
     "color:#8a8178;word-break:break-all;text-align:left;"
 )
+WORK_META_STYLE = (
+    "margin:0 0 20px;padding:9px 12px;border-left:2px solid #c9a28d;background:#f8f4ef;"
+    "font-size:13px;line-height:1.72;letter-spacing:0.15px;color:#695a50;text-align:left;"
+)
 
 
 class WeChatAPIError(RuntimeError):
@@ -226,6 +230,12 @@ def markdown_to_html(markdown: str) -> str:
         if quote:
             flush_paragraph()
             flush_list()
+            quote_text = quote.group(1)
+            if quote_text.startswith("作品档案｜"):
+                output.append(
+                    f'<p style="{WORK_META_STYLE}">{markdown_inline_to_html(quote_text)}</p>'
+                )
+                continue
             output.append(
                 "<blockquote style=\"margin:0 0 18px;padding:11px 14px;border-left:3px solid #c9a28d;"
                 "background:#f8f4ef;color:#695a50;\"><p style=\"margin:0;font-size:15px;line-height:1.8;\">"

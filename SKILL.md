@@ -31,7 +31,9 @@ Assume the default digest is weekly unless the user specifies otherwise:
 - Style: concise editorial curation.
 - Personal data: default to public sources; only use personal records when explicitly requested.
 - Sources: prefer public rankings, reputable media lists, platform charts, and cross-source consensus.
-- Links: preserve clickable source links in the final Markdown whenever a URL is available.
+- Douban-first output: every selected book and film/TV work must have a verified canonical Douban subject page. Use that page as the title link, never a review, news article, award page, or an unverified search result. Exclude a candidate when its exact work page cannot be confirmed.
+- Stable threshold: normal recommendations require a Douban score of at least 8.5. Use at least 2,000 ratings for books and 10,000 ratings for films/TV, unless it is the single explicitly labelled `新作观察位` for the whole issue. That exception still needs a score of at least 8.2, a real Chinese-accessibility signal, and 500 book ratings or 2,000 film/TV ratings.
+- Links: preserve the verified Douban title link in the final Markdown. Other sources belong in the final references, not in place of the work link.
 - Artifacts: when the user asks for a publishable output, report, article, or reusable result, create a `.md` artifact instead of only answering inline.
 
 ## Workflow
@@ -44,12 +46,12 @@ Assume the default digest is weekly unless the user specifies otherwise:
 2. Collect candidate items.
    - Read `references/source_strategy.md`.
    - Search multiple independent sources instead of relying on one platform.
-   - Capture title, creator, type, source, URL, rating, rating count, list/rank, year, tags, and why it appeared.
+   - Capture title, creator, type, canonical Douban URL, rating, rating count, publication/release year, source, list/rank, tags, and why it appeared.
    - Deduplicate translated titles and repeated editions.
 
 3. Rank and filter.
    - Read `references/scoring_rules.md`.
-   - Filter obvious low-quality items: very low rating, very small sample, pure marketing lists with no evidence.
+   - Enforce the Douban-first and stable-threshold rules before editorial ranking. Do not fill a slot with an inaccessible, sensitive-risk, unverified, or low-sample work merely to make the count.
    - Balance recent heat with long-term quality.
    - Enforce diversity: avoid recommending only one genre, country, content type, or source family.
    - For books, cap new-book candidates and explicitly include stable/backlist/classic choices so the result is not just a Douban latest-books digest.
@@ -59,8 +61,9 @@ Assume the default digest is weekly unless the user specifies otherwise:
    - If the user asks to publish, post, send to a platform, or adapt for WeChat Official Account/newsletter/social, read `references/publishing_formats.md`.
    - Use `scripts/rank_items.py` when candidates are saved as JSON.
    - Use `scripts/render_digest.py` to generate Markdown from ranked JSON.
-   - Include for each item: recommendation reason, why now, source signal, and risk note.
-   - Use clickable Markdown links for item titles, source notes, and final references when URLs are available.
+   - Put the canonical Douban link on every item title, then immediately use one consistent metadata line: `> 作品档案｜出版/上映：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：……`.
+   - Give each item two concrete editorial paragraphs: explain the work's construction, voice, scene, motif, or formal choice, then explain its present reading/viewing value. Do not turn the copy into a sequence of score, ranking, and availability claims.
+   - Use plain-text URLs in the final references for WeChat; do not make the references a Markdown list.
    - Save the final publishable draft as a `.md` file when the user asks for a concrete artifact or platform-ready article.
    - For configured WeCom delivery, use `scripts/send_wecom_notification.sh` only after the article and cover exist. Keep the Webhook in ignored local configuration; never put it in skill instructions, artifacts, or Git.
    - For a configured WeChat Official Account, use `scripts/upload_wechat_draft.py` only after the article and cover exist and the user authorizes draft creation. The script converts Markdown to the skill's validated, WeChat-safe editorial HTML; do not paste raw Markdown or depend on the editor to render it. It creates a draft by default; pass `--publish` only when the user explicitly authorizes publication. Keep `WECHAT_APP_SECRET` in ignored local configuration or a secret manager.

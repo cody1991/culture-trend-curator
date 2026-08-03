@@ -86,11 +86,13 @@ Apply during selection, not just raw ranking:
 
 Exclude or downgrade:
 
-- Items with rating below 7/10 unless there is a special reason.
-- Items with very low rating count and no credible source endorsement.
+- Any book or film/TV work whose exact canonical Douban subject page cannot be verified. A title must never point to a review, news story, publisher page, award page, or a search result in the final article.
+- Normal recommendations below 8.5 on Douban.
+- Books with fewer than 2,000 Douban ratings, and films/TV with fewer than 10,000, unless they are the one whole-issue `新作观察位`.
+- A `新作观察位` below 8.2, below 500 book ratings, below 2,000 film/TV ratings, or without a clear Chinese edition/release/discussion signal. It is an exception, not a quota: omit it when no candidate qualifies.
 - Book candidates from latest/new-book pages when they have weak sample size and no external signal.
 - Pure sponsored/promotional lists without independent corroboration.
-- Works that are unavailable or not yet released unless explicitly presented as upcoming.
+- Works that are unavailable, hard to identify in Chinese, likely to create avoidable publication risk, or not yet released unless explicitly presented as upcoming.
 
 ## Deduplication Rules
 
@@ -108,11 +110,11 @@ For a weekly digest:
 
 Books:
 
-- 1 recent hot/new Chinese-readable book.
+- 0-1 recent hot/new Chinese-readable book; it may not displace the score and sample-size rules.
 - 1 stable high-score or long-tail book with enough ratings/discussion.
 - 1 classic or modern classic.
 - 1 nonfiction/humanities/social-science/community pick from media or reading communities.
-- 1 discovery item, explicitly marked if the sample is small.
+- 1 discovery item only when it satisfies the stable threshold; otherwise use another long-tail or classic work.
 
 For 10-book digests: cap latest/new-book-page candidates at 3; include at least 3 backlist/classic/long-term high-score books; include at least 2 non-Douban-latest media/community/publisher/bookstore picks.
 

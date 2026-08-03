@@ -19,8 +19,9 @@ Default output:
 - Use `generated/YYYYMMDD/article.md` for the publishable draft and `generated/YYYYMMDD/cover.png` for the WeChat cover image.
 - If generating an editable local cover source, save it as `generated/YYYYMMDD/cover.svg` or another source file in the same directory.
 - Include title, cover image suggestion or asset path, body, and references. Do not add a separate subtitle or summary block by default.
-- Keep score details and raw ranking evidence out of the main body unless they serve the article's argument.
-- Put source links inline on titles only if the user's publishing workflow preserves them. For the final references section, always use plain text lines instead of Markdown links, bullets, numbered lists, or indentation.
+- Put the verified canonical Douban work page on every item title. Do not use any other page as a title link.
+- Immediately below every item heading, render the standard metadata line as a blockquote: `> 作品档案｜出版/上映：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：……`. This keeps evidence visible without making the prose read like a spreadsheet.
+- For the final references section, always use plain text lines instead of Markdown links, bullets, numbered lists, or indentation.
 - Use clear section headings and short paragraphs.
 - Build a unifying editorial theme before the list, for example work fatigue, gender reversal, summer blockbusters, medical-system pressure, or classic catch-up.
 - Preserve the required recommendation count when requested, but avoid making the article feel like ten isolated cards.
@@ -64,8 +65,7 @@ WeChat writing constraints:
 - Do not format the final references as Markdown links, bullets, numbered lists, footnotes, or indented URL lines. Some WeChat Markdown auto-conversion paths can strip linked text or list content and leave only empty markers.
 - Format final references as one plain-text line per source:
   `Source name：https://example.com`
-- Use source links on item titles only when a single canonical source is enough; if the editor strips those links, move the URL to a nearby plain-text `来源：...` line.
-- For book items with fewer than 200 ratings, explicitly write `新书观察位 / 样本偏小` in the body.
+- A normal item must have at least 8.5 on Douban and at least 2,000 book ratings or 10,000 film/TV ratings. A single whole-issue `新作观察位` may use the lower 8.2 / 500 / 2,000 floors when Chinese availability and other editorial signals are strong; it must be visibly labelled.
 - For films/TV, keep one global classic catch-up slot unless the user says otherwise.
 
 ### Local Official-Account Draft Upload

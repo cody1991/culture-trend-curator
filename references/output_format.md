@@ -11,28 +11,25 @@ Use this structure by default:
 
 ## 书籍
 
-### 1. [《标题》](URL) — 作者
-- 槽位：近期热门 / 稳定口碑 / 经典补课 / 社科人文 / 小众发现 / 新书观察位
-- 类型：文学 / 历史 / 科幻 / 非虚构
-- 推荐理由：一句话说明为什么值得读。
-- 为什么现在读：近期上榜、获奖、讨论变多、新译本、影视化等。
-- 质量信号：评分、评分人数、榜单来源、媒体推荐。
-- 稳定性：长期口碑 / 新书观察位 / 样本偏小 / 多来源交叉验证。
-- 风险提示：节奏慢、门槛高、题材压抑、篇幅长等。
-- 来源链接：[豆瓣/平台/媒体](URL)
+### 1. [《标题》](https://book.douban.com/subject/ID/)｜作者
+> 作品档案｜出版：YYYY｜豆瓣：8.8（32,598 人评价）｜类型：文学 / 历史 / 科幻 / 非虚构
+
+第一段写作品如何成立：叙述角度、结构、语言、人物关系或一个可感知的细节。
+
+第二段写它在本周为什么值得读；把榜单、讨论或长期口碑作为判断底色，不要把评分信息再写成流水账。
+
+提示：节奏、题材或阅读门槛。
 
 ## 影视
 
-### 1. [《标题》](URL) — 导演/主创
-- 槽位：中文热度 / 高口碑新作 / 流媒体热度观察 / 作者电影 / 全球影史经典补课
-- 类型：电影 / 剧集；剧情 / 悬疑 / 纪录片等。
-- 推荐理由：一句话说明为什么值得看。
-- 为什么现在看：热播、完结、获奖、流媒体上线、口碑发酵等。
-- 质量信号：评分、评分人数、榜单来源、媒体评价。
-- 中文可看/可讨论性：中文片名、中文评论/讨论、流媒体/院线/影迷社群可见度。
-- 稳定性：稳定口碑 / 热度观察 / 新片样本未稳 / 经典共识。
-- 风险提示：节奏慢、暴力、压抑、门槛高、烂尾风险等。
-- 来源链接：[豆瓣/平台/媒体](URL)
+### 1. [《标题》](https://movie.douban.com/subject/ID/)｜导演/主创
+> 作品档案｜上映：YYYY｜豆瓣：8.8（329,186 人评价）｜类型：电影 / 剧情 / 家庭
+
+第一段写镜头、表演、剪辑、声音或叙事安排如何工作。
+
+第二段写它与本期主题的关系，以及中文语境里的观看理由。
+
+提示：节奏、题材或观看门槛。
 
 ## 本期观察
 
@@ -53,9 +50,9 @@ Each recommended item should include at least two signals where possible:
 
 - A recent trend/list signal.
 - A quality signal such as rating, critic consensus, award, or repeated source endorsement.
-- A clickable source link when a URL is available.
+- A verified canonical Douban link on the title. Every normal pick must be at least 8.5 with 2,000+ book ratings or 10,000+ film/TV ratings.
 
-For books, also include a slot label. If a book mainly comes from a latest/new-book page and has fewer than 200 ratings, mark it as `新书观察位` or `样本偏小`; do not present it as stable high-score consensus.
+At most one item in the whole issue may be labelled `新作观察位`; it must still clear 8.2 and the lower 500/2,000 rating floors. If none qualifies, do not create an observation slot.
 
 If only one signal exists, explicitly mark it as exploratory.
 
