@@ -75,7 +75,8 @@ This repository includes `scripts/upload_wechat_draft.py` for a configured offic
 - Store `WECHAT_APP_ID` and `WECHAT_APP_SECRET` in the ignored project-root `.env` or a secret manager; never add them to Git.
 - Run the script only after `generated/YYYYMMDD/article.md` and `cover.png` exist.
 - The default action uploads the cover and creates a draft. It does not publish.
-- Use `--publish` only when the user explicitly requests publication. A successful submission can still need platform review, so report the returned publication ID and ask the user to check final status in the official-account backend.
+- Treat draft creation as the normal automated workflow. Report the returned draft `media_id`; the operator can then review and manually publish it in the official-account backend.
+- Use `--publish` only when the user explicitly requests publication **and** the account has a verified `freepublish/submit` API permission in WeChat Developer Platform → 公众号 → 接口管理 → 接口权限与额度. A `48001 api unauthorized` response means this permission is unavailable; stop before publishing the site and do not retry by creating duplicate drafts.
 - To correct an existing draft's copy or layout, use `--update-draft MEDIA_ID`; it updates article 1 in place and keeps its current cover. Prefer this to creating duplicate drafts.
 
 ## GitHub Pages Reading Archive
@@ -94,15 +95,25 @@ python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YY
 
 `--commit --push` is intentionally opt-in: it publishes the reviewed issue through the repository's GitHub Pages workflow. Do not use it for an unreviewed draft, sensitive source notes, or an article the user has not approved for public release.
 
-### Authorized Automatic Weekly Release
+### Conditional Automatic Weekly Release
 
-If the user explicitly authorizes the recurring job to publish immediately to both channels, use the single ordered release command after generation and local validation:
+Use the single ordered release command only when the user explicitly authorizes it **and** the account's `freepublish/submit` permission has been verified:
 
 ```bash
 python3 scripts/release_weekly_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
 ```
 
 It creates an Official Account draft, submits it for publication, then rebuilds and pushes the public site. It stops before the site step when the WeChat submission fails. The returned WeChat `publish_id` confirms submission only; platform review or asynchronous publication can still fail, so report that identifier and final status when available.
+
+### Default Weekly Draft Handoff
+
+When that API permission is absent, the scheduled workflow ends after creating the draft:
+
+```bash
+python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
+```
+
+Report the draft `media_id` and wait for the user to manually publish it. Only after the user confirms publication may the issue be copied to the public archive with `scripts/publish_site_issue.py ... --commit --push`.
 
 ## WeChat Group / Slack / WeCom
 

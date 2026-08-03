@@ -129,6 +129,12 @@ Review the created draft in the official-account backend before publishing. Only
 python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --publish
 ```
 
+For this repository's current account, `freepublish/submit` is not authorized (`48001`). Its normal weekly workflow is therefore **automatic draft creation, then manual publication in the Official Account backend**. Do not use `--publish` or `scripts/release_weekly_issue.py` until WeChat Developer Platform → 公众号 → 接口管理 → 接口权限与额度 shows the publication interface as authorized. After the operator confirms manual publication, publish the reviewed issue to GitHub Pages separately:
+
+```bash
+python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --commit --push
+```
+
 Optional `--author`, `--digest`, and `--source-url` parameters fill the equivalent WeChat article fields. Keep `WECHAT_APP_SECRET` only in `.env` or a secret manager; never add it to Git.
 
 To refresh the body styling of an existing draft without creating another article or uploading another cover, pass its draft `media_id`:
@@ -158,7 +164,7 @@ python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YY
 
 The first command rebuilds the home page, issue page, archive list, and public cover without touching Git. The second is an explicit public release: it commits only `site/`, pushes to `main`, and lets GitHub Pages deploy it.
 
-For a recurring job that has been explicitly authorized to release immediately to both the Official Account and the public archive, use the ordered release command instead:
+For an account with verified publication-interface permission, a recurring job that has been explicitly authorized to release immediately to both the Official Account and the public archive can use the ordered release command instead:
 
 ```bash
 python3 scripts/release_weekly_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
