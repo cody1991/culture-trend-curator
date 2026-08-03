@@ -129,7 +129,7 @@ Review the created draft in the official-account backend before publishing. Only
 python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --publish
 ```
 
-For this repository's current account, `freepublish/submit` is not authorized (`48001`). Its normal weekly workflow is therefore **automatic draft creation, then manual publication in the Official Account backend**. Do not use `--publish` or `scripts/release_weekly_issue.py` until WeChat Developer Platform → 公众号 → 接口管理 → 接口权限与额度 shows the publication interface as authorized. After the operator confirms manual publication, publish the reviewed issue to GitHub Pages separately:
+For this repository's current account, `freepublish/submit` is not authorized (`48001`). Its normal weekly workflow is therefore **automatic draft creation, then manual publication in the Official Account backend**. Once draft creation succeeds, the reviewed issue can be published to GitHub Pages immediately; it does not wait for the manual WeChat action. Do not use `--publish` or `scripts/release_weekly_issue.py` until WeChat Developer Platform → 公众号 → 接口管理 → 接口权限与额度 shows the publication interface as authorized:
 
 ```bash
 python3 scripts/publish_site_issue.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png --commit --push

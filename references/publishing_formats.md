@@ -114,7 +114,7 @@ When that API permission is absent, the scheduled workflow ends after creating t
 python3 scripts/upload_wechat_draft.py generated/YYYYMMDD/article.md generated/YYYYMMDD/cover.png
 ```
 
-Report the draft `media_id` and wait for the user to manually publish it. Only after the user confirms publication may the issue be copied to the public archive with `scripts/publish_site_issue.py ... --commit --push`.
+After draft creation succeeds, copy the reviewed issue to the public archive with `scripts/publish_site_issue.py ... --commit --push`. Report the draft `media_id` and the separate site commit/Pages status; the operator may manually publish the draft afterward. If draft creation fails, do not change the public site.
 
 ## WeChat Group / Slack / WeCom
 
